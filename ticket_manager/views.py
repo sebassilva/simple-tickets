@@ -1,6 +1,6 @@
 from rest_framework import generics
 from ticket_manager.models import Ticket
-from ticket_manager.serializers import TicketSerializer, BuyTicketSerializer
+from ticket_manager.serializers import TicketSerializer
 
 
 class TicketView(generics.ListCreateAPIView):
