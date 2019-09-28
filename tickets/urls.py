@@ -18,9 +18,7 @@ from django.urls import path
 from ticket_manager import views
 
 urlpatterns = [
+    # Solo necesitamos estos endpoints
     path('ticket/', views.TicketView.as_view()),
     path('ticket/<str:pk>/', views.TicketViewDetail.as_view()),
-
-    path('buy/<str:pk>/', views.BuyTicket.as_view()),
-    path('release/<str:pk>/', views.ReleaseTicket.as_view()),
 ]

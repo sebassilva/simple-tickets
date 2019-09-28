@@ -1,7 +1,6 @@
 from django.db import models
 
-# Create your models here.
-
+# Modelo de Tickets
 class Ticket(models.Model):
     id = models.AutoField(primary_key=True)
     price = models.FloatField()

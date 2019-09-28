@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'ticket_manager'
+    'rest_framework', # DRF para manejo de API
+    'ticket_manager' # La aplicación principal
 ]
 
 MIDDLEWARE = [

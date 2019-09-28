@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
-
 class TicketSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Ticket
         fields = ['id', 'price', 'is_sold', 'is_available', 'user']
@@ -21,15 +21,11 @@ class TicketSerializer(serializers.ModelSerializer):
         if instance.user is not None and instance.user != validated_data['user']:
             raise serializers.ValidationError("No eres el propietario de este ticket. Intenta de nuevo")
 
+        # Cuando el usuario compra, obviamente ya no está disponible.
         if validated_data['is_sold'] == True:
             validated_data['is_available'] = False
         
+        # Regresamos el update inicial para que haga todo lo demás una vez validado
         return super(TicketSerializer, self).update(instance, validated_data)
 
-
-
-class BuyTicketSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Ticket
-        fields = ['id', 'price', 'is_sold', 'is_available']
 
