@@ -38,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework', # DRF para manejo de API
-    'ticket_manager' # La aplicación principal
+    'ticket_manager', # La aplicación principal
+    'corsheaders' # CORS para conexión con FrontEnd
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -120,3 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Se agrega localhost para consumo de DRF
+# CORS_ORGIN_WHITELIST = 'http://localhost/Tickets-front/' # Se hizo pruebas pero no funcionó esta definición
+CORS_ORIGIN_ALLOW_ALL = True # Permite el acceso a todas las direcciones (es recomendada solo en Dev Environment)
