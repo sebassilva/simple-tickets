@@ -9,6 +9,8 @@ class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
         fields = ['id', 'price', 'is_sold', 'is_available', 'user']
+        read_only_fields = ('price', 'id')
+
 
     def update(self, instance, validated_data):
         # Validamos si el ticket no ha sido apartado o comprado
