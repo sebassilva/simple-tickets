@@ -14,7 +14,7 @@ class TicketSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         # Validamos si el ticket no ha sido apartado o comprado
-        if not instance.is_available and not validated_data.get('is_available'):
+        if not instance.is_available and not validated_data.get('is_available') and not validated_data.get('is_sold'):
             raise serializers.ValidationError("El ticket ya está apartado y no se puede comprar. Intenta en un par de minutos.")
 
         if instance.is_sold:
@@ -29,9 +29,7 @@ class TicketSerializer(serializers.ModelSerializer):
         
         # El usuario quiere liberar
         if validated_data.get('is_available') == True and instance.is_available == False:
-            validate_data['user'] = None
+            validated_data['user'] = None
         
         # Regresamos el update inicial para que haga todo lo demás una vez validado
         return super(TicketSerializer, self).update(instance, validated_data)
-
-
